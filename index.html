@@ -1,77 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Site com Google Ads</title>
-    <style>
-        #ads-container {
-            width: 300px;
-            height: 250px;
-            margin: auto;
-            margin-top: 50px;
-            border: 1px solid #ccc;
-        }
-    </style>
-
-    <!-- Código do Google Ads (exemplo) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9092694852285030"
-     crossorigin="anonymous"></script>
-<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Display Page</title>
+    <!-- Google Publisher Tags (GPT) script for AdSense -->
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+        window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function() {
+            // Define the ad slot (replace with your ad unit path)
+            var adSlot = googletag.defineSlot('/YOUR_PUBLISHER_ID/YOUR_AD_UNIT_NAME', [300, 250], 'div-gpt-ad-123456789-0').addService(googletag.pubads());
+            // Enable SRA and services
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
 </head>
 <body>
-
-    <h2 style="text-align:center;">Anúncio Rotativo a cada 35s</h2>
-
-    <div id="ads-container">
-        <!-- O anúncio será carregado aqui -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9092694852285030"  <!-- Substitua pelo seu ID -->
-             data-ad-slot="7906316653"                 <!-- Substitua pelo seu slot -->
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+    <h1>My Google Ads Page</h1>
+    <p>This page displays ads from my Google Ads account and refreshes them every 50 seconds.</p>
+    
+    <!-- Ad container -->
+    <div id="div-gpt-ad-123456789-0" style="width: 300px; height: 250px;">
+        <script>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-123456789-0'); });
+        </script>
     </div>
 
+    <!-- JavaScript to refresh the ad every 50 seconds -->
     <script>
-        function carregarAnuncio() {
-            const container = document.getElementById("ads-container");
-
-            // Remove o conteúdo atual
-            container.innerHTML = '';
-
-            // Cria novo elemento de anúncio
-            const ad = document.createElement("ins");
-            ad.className = "adsbygoogle";
-            ad.style.display = "block";
-            ad.setAttribute("data-ad-client", "ca-pub-9092694852285030"); // Seu ID
-            ad.setAttribute("data-ad-slot", "7906316653");               // Seu slot
-            ad.setAttribute("data-ad-format", "auto");
-            ad.setAttribute("data-full-width-responsive", "true");
-
-            container.appendChild(ad);
-
-            // Recarrega o anúncio
-            (adsbygoogle = window.adsbygoogle || []).push({});
+        // Function to refresh the ad
+        function refreshAd() {
+            googletag.cmd.push(function() {
+                googletag.pubads().refresh([adSlot]);  // Refresh the specific ad slot
+            });
         }
 
-        // Inicializa o primeiro anúncio
-        carregarAnuncio();
-
-        // Atualiza o anúncio a cada 35 segundos
-        setInterval(carregarAnuncio, 35000);
+        // Set interval to refresh every 50 seconds (50000 milliseconds)
+        setInterval(refreshAd, 50000);
     </script>
-
-	<!-- Teste de ADS com AMP -->
-	<div id="ads-container">
-		<amp-ad width="100vw" height="320" 
-	type="adsense"
-	data-ad-client="ca-pub-9092694852285030"
-	data-ad-slot="7906316653"
-	data-auto-format="rspv"
-	data-full-width="">
-	<div overflow=""></div>
-		</amp-ad>
-	</div>
-
 </body>
 </html>
