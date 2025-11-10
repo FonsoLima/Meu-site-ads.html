@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Display Page</title>
+    <!-- Google Publisher Tags (GPT) script for AdSense -->
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+        window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function() {
+            // Define the ad slot (replace with your ad unit path)
+            var adSlot = googletag.defineSlot('/YOUR_PUBLISHER_ID/YOUR_AD_UNIT_NAME', [300, 250], 'div-gpt-ad-123456789-0').addService(googletag.pubads());
+            // Enable SRA and services
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+</head>
+<body>
+    <h1>My Google Ads Page</h1>
+    <p>This page displays ads from my Google Ads account and refreshes them every 50 seconds.</p>
+    
+    <!-- Ad container -->
+    <div id="div-gpt-ad-123456789-0" style="width: 300px; height: 250px;">
+        <script>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-123456789-0'); });
+        </script>
+    </div>
+
+    <!-- JavaScript to refresh the ad every 50 seconds -->
+    <script>
+        // Function to refresh the ad
+        function refreshAd() {
+            googletag.cmd.push(function() {
+                googletag.pubads().refresh([adSlot]);  // Refresh the specific ad slot
+            });
+        }
+
+        // Set interval to refresh every 50 seconds (50000 milliseconds)
+        setInterval(refreshAd, 50000);
+    </script>
+</body>
+</html>
